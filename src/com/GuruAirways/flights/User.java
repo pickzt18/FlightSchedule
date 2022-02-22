@@ -11,7 +11,7 @@ public class User {
         this.name = name;
     }
 
-    public void getFlights()
+    public void getFlights(){}
 
     public void buyTicket(Scanner in){
         String input;

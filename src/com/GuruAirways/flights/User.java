@@ -76,14 +76,19 @@ public class User {
                     }
                 }
                 String desiredSeat = null;
-                while(desiredSeat == null){
-                    try{
 
-                    } catch (IllegalArgumentException e) {
-
+                do {
+                    System.out.println("Please select an available seat: " + Seating.getOpenSeats("please").keySet());
+                    String seat = in.nextLine();
+                    try {
+                        if (Seating.checkOpenSeats(seat)) {
+                            desiredSeat = seat;
+                        }
+                    } catch (IllegalSeatException e) {
+                        System.out.println(e.getMessage());
                     }
-                }
-                tickets.add(TicketFactory.createTicket()
+                } while (desiredSeat == null);
+                tickets.add(TicketFactory.createTicket(desiredSeat, date, Airports.MKE, desiredFlight.)
             }
         } else {
             for(Airports airport : Airports.values()){

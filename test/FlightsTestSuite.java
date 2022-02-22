@@ -27,4 +27,11 @@ public class FlightsTestSuite {
                 ", date=" + flights.getDate() +
                 '}',flights.toString() );
     }
+    @Test
+    public void testNoMKEArrivals(){
+        Map<Integer, Airports> testFlights = flights.getFlights();
+        for(Airports airport : testFlights.values()){
+            assertNotEquals(Airports.MKE, airport);
+        }
+    }
 }

@@ -34,6 +34,15 @@ public class Flights {
         return flights;
     }
 
+    public static Map<Integer, Airports> fetchFlights(Airports airport){ // fetches next 5 flights to specified airport
+        Map<Integer, Airports> flights = new HashMap();
+        for(int i=0; i<5; i++){
+            Integer integer = (int)(Math.random()*24);
+            flights.put(integer,airport);
+        }
+        return flights;
+    }
+
     @Override
     public String toString() {
         return "Flights{" +

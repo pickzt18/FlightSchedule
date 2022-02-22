@@ -24,15 +24,18 @@ public class Seating {
         return seatMap;
     }
 
-    static public Boolean checkOpenSeats(String seat) {
+     public void checkOpenSeats(String seat) {
 //        return seatMap.get(seat);
-        if (!seatMap.get(seat) == false) {
+
+        if (seatMap.containsValue(input)) {
             System.out.println("Seat already filled. Please select a different seat");
+//            return false;
         } else {
             seatMap.put(seat, false);
             System.out.println("Your selected seat is available");
         }
-        return true;
+//        return true;
     }
 }
 
+//(input.compareTo((seatMap.keySet(i))))

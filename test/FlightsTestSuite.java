@@ -34,4 +34,8 @@ public class FlightsTestSuite {
             assertNotEquals(Airports.MKE, airport);
         }
     }
+    @Test
+    public void testStaticFlights(){
+        System.out.println(Flights.fetchFlights(Airports.MSN));
+    }
 }

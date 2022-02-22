@@ -78,7 +78,7 @@ public class User {
                 String desiredSeat = null;
 
                 do {
-                    System.out.println("Please select an available seat: " + Seating.getOpenSeats("please").keySet());
+                    System.out.println("Please select an available seat: " + Seating.getOpenSeats().keySet());
                     String seat = in.nextLine();
                     try {
                         if (Seating.checkOpenSeats(seat)) {
@@ -88,7 +88,7 @@ public class User {
                         System.out.println(e.getMessage());
                     }
                 } while (desiredSeat == null);
-                tickets.add(TicketFactory.createTicket(desiredSeat, date, Airports.MKE, desiredFlight.)
+                tickets.add(TicketFactory.createTicket(desiredSeat, date, Airports.MKE, );
             }
         } else {
             for(Airports airport : Airports.values()){

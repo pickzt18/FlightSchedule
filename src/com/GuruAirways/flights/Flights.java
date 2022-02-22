@@ -28,7 +28,7 @@ public class Flights {
     private Map<Integer, Airports> fetchFlights(){
         Map<Integer, Airports> flights = new HashMap<>();
         for (int i=0; i< 24; i++){ //"get request" just random airports
-            Airports curAirport = Airports.values()[(int)(Math.random()*Airports.values().length)];
+            Airports curAirport = Airports.values()[(int)(Math.random()*(Airports.values().length-1))+1];
             flights.put(i, curAirport);
         }
         return flights;

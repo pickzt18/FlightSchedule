@@ -3,16 +3,19 @@ package com.GuruAirways.flights;
 import java.util.Date;
 
 public class FirstClass implements Ticket {
-    Date departureDate;
-    Airports depart;
-    Airports arrive;
+    private final int RATE = 200;
+    private final Airports DEPART = Airports.MKE;
+    private Date departureDate;
+    private Airports arrive;
     private String seat;
-    private String ticketType="First Class";
+    private String ticketType = "First Class";
+    private Flights flight;
 
     public FirstClass() {
     }
 
     public FirstClass(String seat) {
+        this();
         setSeat(seat);
     }
 
@@ -21,16 +24,10 @@ public class FirstClass implements Ticket {
         setArrive(arrive);
     }
 
-    public FirstClass(String seat, Airports depart, Airports arrive) {
+    public FirstClass(String seat, Date departureDate, Airports arrive) {
         this(seat, arrive);
-        setDepart(depart);
-    }
-
-    public FirstClass(String seat, Date departureDate, Airports depart, Airports arrive) {
-        this(seat, depart, arrive);
         setDepartureDate(departureDate);
     }
-
 
 
     @Override
@@ -38,20 +35,18 @@ public class FirstClass implements Ticket {
         this.seat = seat;
     }
 
+
     @Override
     public String toString() {
         return "FirstClass{" +
-                "departureDate=" + departureDate +
-                ", depart=" + depart +
+                "RATE=$" + RATE +
+                ", DEPART=" + DEPART +
+                ", departureDate=" + departureDate +
                 ", arrive=" + arrive +
                 ", seat='" + seat + '\'' +
                 ", ticketType='" + ticketType + '\'' +
+                ", flight=" + flight +
                 '}';
-    }
-
-    @Override
-    public void setDepart(Airports depart) {
-        this.depart = depart;
     }
 
     @Override
@@ -62,5 +57,11 @@ public class FirstClass implements Ticket {
     @Override
     public void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
+        getFlight();
+    }
+
+    @Override
+    public void getFlight() {
+        this.flight = new Flights(departureDate);
     }
 }

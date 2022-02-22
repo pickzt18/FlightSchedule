@@ -1,41 +1,44 @@
 package com.GuruAirways.flights;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Seating {
     public static final Scanner scan = new Scanner(System.in);
-    String input = Seating.scan.next();
+    static Map<String, Boolean> seatMap = new TreeMap<>();
 
-    static Map<String, Boolean> seatMap = new HashMap<>();
-
-    static public Map getOpenSeats(String seat) {
+    static {
         seatMap.put("1a", true);
         seatMap.put("1b", true);
         seatMap.put("2a", true);
-        seatMap.put("2b", true);
+        seatMap.put("2b", false);
         seatMap.put("3a", true);
         seatMap.put("3b", true);
-        seatMap.put("4a", true);
+        seatMap.put("4a", false);
         seatMap.put("4b", true);
-        seatMap.put("5a", true);
+        seatMap.put("5a", false);
         seatMap.put("5b", true);
-        return seatMap;
     }
 
-     public void checkOpenSeats(String seat) {
-//        return seatMap.get(seat);
-
-        if (seatMap.containsValue(input)) {
-            System.out.println("Seat already filled. Please select a different seat");
-//            return false;
-        } else {
-            seatMap.put(seat, false);
-            System.out.println("Your selected seat is available");
+    public static Map<String, Boolean> getOpenSeats() {
+        Map<String, Boolean> openSeatMap = new TreeMap<>();
+        for (String seat : seatMap.keySet()) {
+            if (seatMap.get(seat)) {
+                openSeatMap.put(seat, seatMap.get(seat));
+            }
         }
-//        return true;
+        return openSeatMap;
+    }
+
+    public static boolean checkOpenSeats(String seat) throws IllegalSeatException {
+
+        if (seatMap.get(seat)) {
+            System.out.println("Your selected seat is available");
+            return true;
+        } else {
+            throw new IllegalSeatException("Seat already filled. Please select a different seat");
+        }
     }
 }
 
-//(input.compareTo((seatMap.keySet(i))))

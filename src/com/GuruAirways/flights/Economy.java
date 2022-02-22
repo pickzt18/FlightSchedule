@@ -3,24 +3,30 @@ package com.GuruAirways.flights;
 import java.util.Date;
 
 public class Economy implements Ticket{
+    private final int RATE=100;
     private String seat;
     private Date departureDate;
-    private Airports depart;
+    private final Airports DEPART=Airports.MKE;
     private Airports arrive;
     private String ticketType="Economy";
+    private Flights flight;
 
     @Override
     public String toString() {
         return "Economy{" +
-                "seat='" + seat + '\'' +
+                "RATE=$" + RATE +
+                ", seat='" + seat + '\'' +
                 ", departureDate=" + departureDate +
-                ", depart=" + depart +
+                ", DEPART=" + DEPART +
                 ", arrive=" + arrive +
                 ", ticketType='" + ticketType + '\'' +
+                ", flight=" + flight +
                 '}';
     }
 
+    public Economy(){}
     public Economy(String seat) {
+        this();
         setSeat(seat);
     }
 
@@ -29,13 +35,8 @@ public class Economy implements Ticket{
         setArrive(arrive);
     }
 
-    public Economy(String seat, Airports depart, Airports arrive) {
+    public Economy(String seat, Date departureDate, Airports arrive) {
         this(seat, arrive);
-        setDepart(depart);
-    }
-
-    public Economy(String seat, Date departureDate, Airports depart, Airports arrive) {
-        this(seat, depart, arrive);
         setDepartureDate(departureDate);
     }
 
@@ -44,10 +45,6 @@ public class Economy implements Ticket{
         this.seat=seat;
     }
 
-    @Override
-    public void setDepart(Airports depart) {
-        this.depart=depart;
-    }
 
     @Override
     public void setArrive(Airports arrive) {
@@ -57,5 +54,9 @@ public class Economy implements Ticket{
     @Override
     public void setDepartureDate(Date departureDate) {
         this.departureDate=departureDate;
+        getFlight();
+    }
+    public void getFlight(){
+        this.flight=new Flights(departureDate);
     }
 }

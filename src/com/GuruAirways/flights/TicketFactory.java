@@ -3,7 +3,7 @@ package com.GuruAirways.flights;
 import java.util.Date;
 
 public class TicketFactory {
-    static public Ticket createTicket(String seat, Date departureDate, Airports depart, Airports arrive){
+    static public Ticket createTicket(String seat, Date departureDate, Airports depart, Airports arrive) {
         switch (seat) {
             case "1a":
             case "2b":

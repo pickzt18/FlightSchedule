@@ -9,7 +9,7 @@ public class Economy implements Ticket{
     private final Airports DEPART=Airports.MKE;
     private Airports arrive;
     private String ticketType="Economy";
-    private Flights flight;
+    private int flight;
 
     @Override
     public String toString() {
@@ -20,7 +20,6 @@ public class Economy implements Ticket{
                 ", DEPART=" + DEPART +
                 ", arrive=" + arrive +
                 ", ticketType='" + ticketType + '\'' +
-                ", flight=" + flight +
                 '}';
     }
 
@@ -54,9 +53,5 @@ public class Economy implements Ticket{
     @Override
     public void setDepartureDate(Date departureDate) {
         this.departureDate=departureDate;
-        getFlight();
-    }
-    public void getFlight(){
-        this.flight=new Flights(departureDate);
     }
 }

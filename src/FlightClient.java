@@ -1,28 +1,21 @@
-import com.GuruAirways.flights.IllegalSeatException;
-import com.GuruAirways.flights.Seating;
 
-import java.util.Map;
+import com.GuruAirways.flights.Ticket;
+import com.GuruAirways.flights.User;
+import java.util.List;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class FlightClient {
     public static void main(String[] args) {
-        Boolean filled = true;
-        Scanner scan = new Scanner(System.in);
-        Map<String, Boolean> openSeats = (TreeMap<String, Boolean>) Seating.getOpenSeats();
-        do {
-            System.out.println("Please select an available seat: " + openSeats.keySet());
-            String seat = scan.nextLine();
-            try {
-                if (Seating.checkOpenSeats(seat)) {
-                    filled = false;
-                    System.out.println("Book");
-                }
-
-            } catch (IllegalSeatException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (filled);
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter your Name:");
+        String name= in.nextLine();
+        User passenger=new User(name);
+        passenger.buyTicket();
+        List<Ticket> tickets=passenger.getTickets();
+        for(var ticket:tickets){
+            System.out.println(ticket);
+        }
+        passenger.exportTickets();
     }
 
 

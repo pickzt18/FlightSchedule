@@ -1,12 +1,12 @@
 package com.GuruAirways.flights;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.Scanner;
+import java.io.*;
+import java.net.URI;
+import java.util.*;
 
 public class User {
     String name;
-    Collection<Ticket> tickets;
+    List<Ticket> tickets = new ArrayList<>();
 
     public User(String name){
         this.name = name;
@@ -19,7 +19,7 @@ public class User {
         Integer year = null;
         Date date = null;
         System.out.println("Please enter the abbreviation of your desired airport or type by-date");
-        System.out.println(Airports.values());
+        System.out.println(Airports.values().toString());
         input=in.next();
         if(input.equals("by-date")) {
             while (date == null) {
@@ -41,13 +41,13 @@ public class User {
                             break;
                         }
                         case 2: {
-                            System.out.println("enter Day 0-28");
+                            System.out.println("enter Day 01-28");
                             input = in.next();
                             day = Integer.parseInt(input);
                             break;
                         }
                         default: {
-                            System.out.println("enter Day 0-30");
+                            System.out.println("enter Day 01-30");
                             input = in.next();
                             day = Integer.parseInt(input);
                             break;
@@ -63,7 +63,7 @@ public class User {
                 }
                 Flights flightsToday = new Flights(date);
                 System.out.println("Pick a Flight by entering the departure time");
-                System.out.println(flightsToday.getFlights());
+                System.out.println(flightsToday.getFlights().values());
                 Integer desiredFlight = null;
                 while(desiredFlight == null){
                     try {
@@ -75,6 +75,8 @@ public class User {
                         desiredFlight = null;
                     }
                 }
+                Airports destination = flightsToday.getFlights().get(desiredFlight);
+
                 String desiredSeat = null;
 
                 do {
@@ -88,7 +90,7 @@ public class User {
                         System.out.println(e.getMessage());
                     }
                 } while (desiredSeat == null);
-                tickets.add(TicketFactory.createTicket(desiredSeat, date, Airports.MKE, );
+                tickets.add(TicketFactory.createTicket(desiredSeat, date, Airports.MKE, destination));
             }
         } else {
             for(Airports airport : Airports.values()){
@@ -122,8 +124,22 @@ public class User {
         }
         if(year>2024 || year < 2022) throw new IllegalArgumentException("Invalid year (2022-2024");
         Date date = new Date(year, month,day);
-        if(new Date().before(date)) throw new IllegalArgumentException("Cannot schedule for past flights");
+        if(new Date().after(date)) throw new IllegalArgumentException("Cannot schedule for past flights");
         return date;
+    }
+
+    public void exportTickets(){
+        File file = new File("output.txt");
+        try {
+            file.createNewFile();
+            PrintWriter writer = new PrintWriter("output.txt");
+            int i=0;
+            for(Ticket ticket : tickets){
+                writer.println(ticket);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 }
 /*////////////////

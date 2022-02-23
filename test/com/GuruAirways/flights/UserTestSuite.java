@@ -11,4 +11,9 @@ public class UserTestSuite {
         User user = new User("test");
         user.buyTicket(in);
     }
+    @Test
+    public void testExport(){
+        User user = new User("tom");
+        user.exportTickets();
+    }
 }

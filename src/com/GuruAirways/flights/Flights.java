@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Flights {
+    private static int flight;
     private Map flights;
     private Date date;
-
     public Flights(Date date){
         setDate(date);
     }
@@ -49,5 +49,13 @@ public class Flights {
                 "flights=" + flights +
                 ", date=" + date +
                 '}';
+    }
+
+    public static int getDesiredFlight() {
+        return flight;
+    }
+
+    public static void setDesiredFlight(int desiredFlight) {
+        flight = desiredFlight;
     }
 }

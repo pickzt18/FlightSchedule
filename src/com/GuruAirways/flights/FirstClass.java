@@ -9,7 +9,7 @@ public class FirstClass implements Ticket {
     private Airports arrive;
     private String seat;
     private String ticketType = "First Class";
-    private Flights flight;
+    private int flight;
 
     public FirstClass() {
     }
@@ -45,7 +45,6 @@ public class FirstClass implements Ticket {
                 ", arrive=" + arrive +
                 ", seat='" + seat + '\'' +
                 ", ticketType='" + ticketType + '\'' +
-                ", flight=" + flight +
                 '}';
     }
 
@@ -57,11 +56,6 @@ public class FirstClass implements Ticket {
     @Override
     public void setDepartureDate(Date departureDate) {
         this.departureDate = departureDate;
-        getFlight();
     }
 
-    @Override
-    public void getFlight() {
-        this.flight = new Flights(departureDate);
-    }
 }

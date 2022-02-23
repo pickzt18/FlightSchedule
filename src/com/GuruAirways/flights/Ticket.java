@@ -6,5 +6,4 @@ public interface Ticket {
     void setSeat(String seat);
     void setArrive(Airports arrive);
     void setDepartureDate(Date departureDate);
-    void getFlight();
 }
